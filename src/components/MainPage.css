@@ -1,0 +1,145 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .main {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%; /* Ensure full width */
+  }
+
+  .main::before {
+    content: '';
+    /*background-image: url('https://tse3.mm.bing.net/th/id/OIP.NZg1N_qd_eXezcZ8MaVH7gHaJ4?rs=1&pid=ImgDetMain');
+    background-size: cover;
+    background-position: center;
+    background-repeat: repeat; 
+    opacity: 1; 
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: -1; */
+  }
+  
+  
+  .carousel .slide img {
+    width: 100%;
+    height: 500px;
+    object-fit: cover; /* Crop the image */
+  }
+  
+  .carousel .slide {
+    position: relative;
+  }
+  
+  .carousel .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(19, 60, 85, 0.5); /* Translucent #133C55 color */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 2rem;
+    font-weight: bold;
+  }
+  
+  .carousel-container {
+    width: 100%; /* Ensure full width */
+    margin-bottom: 20px; /* Space between carousel and next section */
+  }
+  
+  .banner {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    margin-bottom: 50px;
+  }
+  
+  .banner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .banner .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(19, 60, 85, 0.5); /* Translucent #133C55 color */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  
+  
+  .bottom {
+    background-color: #386FA4;
+    width: 100%;
+    height: 225px;
+    object-fit: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 20px; /* Add margin to create space on the sides */
+  }
+  
+  th, td {
+    padding: 10px; /* Add padding to create space */
+    text-align: left;
+    color: white; /* Ensure text is visible on the background */
+  }
+  
+  
+  .hr {
+    border: none;
+    height: 2px;
+    background-color: #133C55; /* Custom color */
+    margin: 20px 0; /* Space around the line */
+  }
+  p, ul, h1, h2, h3, h4, h5, h6 {
+    margin: 0 50px; /* Add margin to the sides */
+  }
+  .table{
+    color: white;
+  }
+
+#box{
+    position: center;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    text-align: center;
+    text-size-adjust: large;
+    font-weight: 600;
+    
+}
+
+#newBox{
+    font-weight: 1000;
+    font-size: xx-large;
+}
+
+#other{
+    margin:200px;
+}
