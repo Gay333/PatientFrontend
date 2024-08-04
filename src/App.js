@@ -136,6 +136,10 @@ import UpdatePatient from './components/UpdatePatient';
 import MainPage from './components/MainPage';
 import NurseProfile from './components/NurseProfile';
 import AdminProfile from './components/AdminProfile';
+import UploadComponent from './components/UploadComponent';
+import KnowMore from './components/KnowMore';
+import OTPLogin from './components/OTPLogin';
+import Profile from './components/Profile';
 
 function App() {
   return (
@@ -147,6 +151,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/nurse-profile" element={<NurseProfile />} />
         <Route path="/admin-profile" element={<AdminProfile />} />
+        <Route path="/patient-profile" element={<Profile />} />
         <Route path="/register" element={<UserRegistration />} />
         <Route path="/nurse-addition" element={<NurseAddition />} />
         <Route path="/nurse-login" element={<NurseLogin />} />
@@ -169,6 +174,9 @@ function App() {
         <Route path="/add-patient-record" element={<AddPatientRecord />} />
         <Route path="/update-nurse" element={<UpdateNurse />} />
         <Route path="/update-patient" element={<UpdatePatient />} />
+        <Route path="/upload-pdf" element={<UploadComponent />} />
+        <Route path="/Know-More" element={<KnowMore />} />
+        <Route path="/OTP-Login" element={<OTPLogin />} />
         <Route path="/" element={<MainPage />} /> {/* Default route */}
       </Routes>
     </Router>

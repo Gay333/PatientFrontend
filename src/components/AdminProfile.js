@@ -1,22 +1,56 @@
-import * as React from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
+import axios from 'axios';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import Button from '@mui/material/Button';
 import List from '@mui/material/List';
-import Divider from '@mui/material/Divider';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
 import { Link } from 'react-router-dom';
 
+axios.defaults.withCredentials = true;
+
 export default function TemporaryDrawer() {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
+  const [message, setMessage] = useState('');
+  const [hasFetched, setHasFetched] = useState(false);
 
   const toggleDrawer = (newOpen) => () => {
     setOpen(newOpen);
+  };
+
+  const enterance = useCallback(() => {
+    if (!hasFetched) {
+      setHasFetched(true);
+      console.log("Fetching welcome message");
+
+      axios.get('http://localhost:8080/admin/welcome')
+        .then(response => {
+          setMessage(response.data);
+        })
+        .catch(error => {
+          console.error('Error fetching welcome message:', error);
+        });
+    }
+  }, [hasFetched]);
+
+  useEffect(() => {
+    console.log("useEffect called");
+    enterance();
+  }, [enterance]);
+
+  const handleLogout = () => {
+    axios.get('http://localhost:8080/admin/adminlogout')
+      .then(response => {
+        setMessage(response.data);
+        window.location.href = "/";
+      })
+      .catch(error => {
+        console.error('Error logging out:', error);
+      });
   };
 
   const DrawerList = (
@@ -55,7 +89,7 @@ export default function TemporaryDrawer() {
           </ListItemButton>
         </ListItem>
         <ListItem disablePadding>
-          <ListItemButton component={Link} to="/All-patient-medicine">
+          <ListItemButton component={Link} to="/all-patient-medicine">
             <ListItemIcon>
               <InboxIcon />
             </ListItemIcon>
@@ -94,54 +128,7 @@ export default function TemporaryDrawer() {
             <ListItemText primary="Specific Patient Test" />
           </ListItemButton>
         </ListItem>
-        <ListItem disablePadding>
-          <ListItemButton component={Link} to="/medical-records">
-            <ListItemIcon>
-              <InboxIcon />
-            </ListItemIcon>
-            <ListItemText primary="Medical Records" />
-          </ListItemButton>
-        </ListItem>
-        <ListItem disablePadding>
-          <ListItemButton component={Link} to="/patient-medical-records">
-            <ListItemIcon>
-              <InboxIcon />
-            </ListItemIcon>
-            <ListItemText primary="Patient Medical Records" />
-          </ListItemButton>
-        </ListItem>
-        <ListItem disablePadding>
-          <ListItemButton component={Link} to="/medical-tests">
-            <ListItemIcon>
-              <InboxIcon />
-            </ListItemIcon>
-            <ListItemText primary="Medical Tests" />
-          </ListItemButton>
-        </ListItem>
-        <ListItem disablePadding>
-          <ListItemButton component={Link} to="/patient-medical-tests">
-            <ListItemIcon>
-              <InboxIcon />
-            </ListItemIcon>
-            <ListItemText primary="Patient Medical Tests" />
-          </ListItemButton>
-        </ListItem>
-        <ListItem disablePadding>
-          <ListItemButton component={Link} to="/add-patient-medicine">
-            <ListItemIcon>
-              <InboxIcon />
-            </ListItemIcon>
-            <ListItemText primary="Add Patient Medicine" />
-          </ListItemButton>
-        </ListItem>
-        <ListItem disablePadding>
-          <ListItemButton component={Link} to="/add-patient-test">
-            <ListItemIcon>
-              <InboxIcon />
-            </ListItemIcon>
-            <ListItemText primary="Add Patient Test" />
-          </ListItemButton>
-        </ListItem>
+
         <ListItem disablePadding>
           <ListItemButton component={Link} to="/add-patient-record">
             <ListItemIcon>
@@ -150,16 +137,38 @@ export default function TemporaryDrawer() {
             <ListItemText primary="Add Patient Record" />
           </ListItemButton>
         </ListItem>
+
+
+        <ListItem disablePadding>
+          <ListItemButton component={Link} to="/add-patient-test">
+            <ListItemIcon>
+              <InboxIcon />
+            </ListItemIcon>
+            <ListItemText primary="Add Patient Test" />
+          </ListItemButton>
+        </ListItem>
+
+
+        <ListItem disablePadding>
+          <ListItemButton component={Link} to="/add-patient-medicine">
+            <ListItemIcon>
+              <InboxIcon />
+            </ListItemIcon>
+            <ListItemText primary="Add Patient Medicine" />
+          </ListItemButton>
+        </ListItem>
       </List>
     </Box>
   );
 
   return (
     <div>
-      <Button onClick={toggleDrawer(true)}>Open drawer</Button>
-      <Drawer open={open} onClose={toggleDrawer(false)}>
+      <Button onClick={toggleDrawer(true)}>Open Drawer</Button>
+      <Drawer anchor="left" open={open} onClose={toggleDrawer(false)}>
         {DrawerList}
       </Drawer>
+      <div>{message}</div>
+      <Button onClick={handleLogout} variant="contained" color="secondary">Logout</Button>
     </div>
   );
 }

@@ -134,29 +134,29 @@ const MedicalTests = () => {
                         <table style={{ borderCollapse: 'collapse', width: '100%' }}>
                             <thead>
                                 <tr>
-                                    <th style={{ border: '1px solid #ddd', padding: '8px' }}>Patient ID</th>
-                                    <th style={{ border: '1px solid #ddd', padding: '8px' }}>Date of Appointment</th>
-                                    <th style={{ border: '1px solid #ddd', padding: '8px' }}>Heart Rate</th>
-                                    <th style={{ border: '1px solid #ddd', padding: '8px' }}>Diabetes Pedigree Function</th>
-                                    <th style={{ border: '1px solid #ddd', padding: '8px' }}>Glucose</th>
-                                    <th style={{ border: '1px solid #ddd', padding: '8px' }}>Skin Thickness</th>
-                                    <th style={{ border: '1px solid #ddd', padding: '8px' }}>Insulin</th>
-                                    <th style={{ border: '1px solid #ddd', padding: '8px' }}>Body Mass Index</th>
-                                    <th style={{ border: '1px solid #ddd', padding: '8px' }}>Outcome</th>
+                                    <th style={{color: 'black', border: '1px solid #ddd', padding: '8px' }}>Patient ID</th>
+                                    <th style={{color: 'black', border: '1px solid #ddd', padding: '8px' }}>Date of Appointment</th>
+                                    <th style={{color: 'black', border: '1px solid #ddd', padding: '8px' }}>Heart Rate</th>
+                                    <th style={{color: 'black', border: '1px solid #ddd', padding: '8px' }}>Diabetes Pedigree Function</th>
+                                    <th style={{color: 'black', border: '1px solid #ddd', padding: '8px' }}>Glucose</th>
+                                    <th style={{color: 'black', border: '1px solid #ddd', padding: '8px' }}>Skin Thickness</th>
+                                    <th style={{color: 'black', border: '1px solid #ddd', padding: '8px' }}>Insulin</th>
+                                    <th style={{color: 'black', border: '1px solid #ddd', padding: '8px' }}>Body Mass Index</th>
+                                    <th style={{color: 'black', border: '1px solid #ddd', padding: '8px' }}>Outcome</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {filteredTests.map((test) => (
                                     <tr key={test.s_no}>
-                                        <td style={{ border: '1px solid #ddd', padding: '8px' }}>{test.patient_ID || 'Not available'}</td>
-                                        <td style={{ border: '1px solid #ddd', padding: '8px' }}>{test.date_of_appointment || 'Not available'}</td>
-                                        <td style={{ border: '1px solid #ddd', padding: '8px' }}>{test.heart_rate || 'Not available'}</td>
-                                        <td style={{ border: '1px solid #ddd', padding: '8px' }}>{test.diabetespedigreefunction || 'Not available'}</td>
-                                        <td style={{ border: '1px solid #ddd', padding: '8px' }}>{test.glucose || 'Not available'}</td>
-                                        <td style={{ border: '1px solid #ddd', padding: '8px' }}>{test.skin_thickness || 'Not available'}</td>
-                                        <td style={{ border: '1px solid #ddd', padding: '8px' }}>{test.insulin || 'Not available'}</td>
-                                        <td style={{ border: '1px solid #ddd', padding: '8px' }}>{test.bmi || 'Not available'}</td>
-                                        <td style={{ border: '1px solid #ddd', padding: '8px' }}>{test.outcome !== undefined ? test.outcome : 'Not available'}</td>
+                                        <td style={{color: 'black', border: '1px solid #ddd', padding: '8px' }}>{test.patient_ID || 'Not available'}</td>
+                                        <td style={{color: 'black', border: '1px solid #ddd', padding: '8px' }}>{test.date_of_appointment || 'Not available'}</td>
+                                        <td style={{color: 'black', border: '1px solid #ddd', padding: '8px' }}>{test.heart_rate || 'Not available'}</td>
+                                        <td style={{color: 'black', border: '1px solid #ddd', padding: '8px' }}>{test.diabetespedigreefunction || 'Not available'}</td>
+                                        <td style={{color: 'black', border: '1px solid #ddd', padding: '8px' }}>{test.glucose || 'Not available'}</td>
+                                        <td style={{color: 'black', border: '1px solid #ddd', padding: '8px' }}>{test.skin_thickness || 'Not available'}</td>
+                                        <td style={{color: 'black', border: '1px solid #ddd', padding: '8px' }}>{test.insulin || 'Not available'}</td>
+                                        <td style={{ color: 'black',border: '1px solid #ddd', padding: '8px' }}>{test.bmi || 'Not available'}</td>
+                                        <td style={{ color: 'black',border: '1px solid #ddd', padding: '8px' }}>{test.outcome !== undefined ? test.outcome : 'Not available'}</td>
                                     </tr>
                                 ))}
                             </tbody>

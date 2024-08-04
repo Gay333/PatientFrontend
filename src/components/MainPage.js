@@ -51,6 +51,7 @@ export default function MainPage() {
 
 
   return (
+  <div style={{ backgroundImage: 'url(https://i.pinimg.com/originals/6b/31/db/6b31dbf725759f1d765a794f79778a09.jpg)', backgroundSize: 'cover', backgroundPosition: 'center', minHeight: '100vh', padding: '20px' }}>
     <div className='main'>
       <div className='banner'>
         <img src='https://cdn.apollohospitals.com/dev-apollohospitals/2021/04/breadcrumb-2.jpg' alt='banner'/>
@@ -95,7 +96,7 @@ export default function MainPage() {
        
         <hr/>
         <br/>
-        <Button variant="contained"  sx={{ backgroundColor: '#59A5D8', margin: '0 8px' }}>Know More</Button>
+        <Button  href="/Know-More" variant="contained"  sx={{ backgroundColor: '#59A5D8', margin: '0 8px' }}>Know More</Button>
         </p>
       </BoxName>
       <br/>
@@ -145,6 +146,7 @@ export default function MainPage() {
     </div>
       </div>
     </div>
+  </div>
     
   );
 }

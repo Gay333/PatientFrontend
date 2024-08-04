@@ -972,6 +972,8 @@ export default function PrimarySearchAppBar() {
 }
 //if condition based on nurse or admin login
 */
+
+/*
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 
@@ -1067,7 +1069,7 @@ const toggleDrawer = (open) => (event) => {
             variant="h6"
             noWrap
             component="a"
-            href="#app-bar-with-responsive-menu"
+            href="/"
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },
@@ -1122,7 +1124,7 @@ const toggleDrawer = (open) => (event) => {
             variant="h5"
             noWrap
             component="a"
-            href="#app-bar-with-responsive-menu"
+            href="/main-page"
             sx={{
               mr: 2,
               display: { xs: 'flex', md: 'none' },
@@ -1221,3 +1223,396 @@ const toggleDrawer = (open) => (event) => {
 }
 
 export default Appbar;
+*/
+
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText, IconButton, Toolbar, AppBar, Box, Typography, MenuItem, Menu, Container, Button, Tooltip } from '@mui/material';
+import MenuIcon from '@mui/icons-material/Menu';
+import AdbIcon from '@mui/icons-material/Vaccines';
+import Face2Icon from '@mui/icons-material/Face2';
+import CallIcon from '@mui/icons-material/Call';
+import InboxIcon from '@mui/icons-material/MoveToInbox';
+import axios from 'axios';
+
+const pages = [
+  { name: 'Chat', path: '/chat' },
+  { name: 'Medical Tests', path: '/medical-tests' },
+  { name: 'Login', path: '/login' }
+];
+
+const settings = [
+  { name: 'Profile', path: '/profile' },
+  { name: 'Logout', path: '/' }
+];
+
+function Appbar() {
+  const [anchorElNav, setAnchorElNav] = useState(null);
+  const [anchorElUser, setAnchorElUser] = useState(null);
+  const [anchorElCall, setAnchorElCall] = useState(null);
+  const [drawerOpen, setDrawerOpen] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [message, setMessage] = useState('');
+
+  useEffect(() => {
+    axios.post('http://localhost:8080/admin/adminlogin/1/password', {}, { withCredentials: true })
+      .then(() => {
+        axios.get('http://localhost:8080/admin/welcome', { withCredentials: true })
+          .then(response => {
+            setMessage(response.data);
+            setLoggedIn(true);
+          })
+          .catch(error => {
+            console.error('There was an error fetching the welcome message!', error);
+          });
+      })
+      .catch(error => {
+        console.error('There was an error during login!', error);
+      });
+  }, []);
+
+  const handleOpenNavMenu = (event) => {
+    setAnchorElNav(event.currentTarget);
+  };
+
+  const handleCloseNavMenu = () => {
+    setAnchorElNav(null);
+  };
+
+  const handleOpenUserMenu = (event) => {
+    setAnchorElUser(event.currentTarget);
+  };
+
+  const handleCloseUserMenu = () => {
+    setAnchorElUser(null);
+  };
+
+  const handleOpenCallMenu = (event) => {
+    setAnchorElCall(event.currentTarget);
+  };
+
+  const handleCloseCallMenu = () => {
+    setAnchorElCall(null);
+  };
+
+  const toggleDrawer = (open) => (event) => {
+    if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+      return;
+    }
+    setDrawerOpen(open);
+  };
+
+  const DrawerList = (
+    <Box sx={{ width: 250 }} role="presentation" onClick={toggleDrawer(false)} onKeyDown={toggleDrawer(false)}>
+      <List>
+        <ListItem disablePadding>
+          <ListItemButton component={Link} to="/nurse-addition">
+            <ListItemIcon>
+              <InboxIcon />
+            </ListItemIcon>
+            <ListItemText primary="Nurse Addition" />
+          </ListItemButton>
+        </ListItem>
+        <ListItem disablePadding>
+          <ListItemButton component={Link} to="/delete-patient-medicine">
+            <ListItemIcon>
+              <InboxIcon />
+            </ListItemIcon>
+            <ListItemText primary="Delete Patient Medicine" />
+          </ListItemButton>
+        </ListItem>
+        <ListItem disablePadding>
+          <ListItemButton component={Link} to="/delete-patient-record">
+            <ListItemIcon>
+              <InboxIcon />
+            </ListItemIcon>
+            <ListItemText primary="Delete Patient Record" />
+          </ListItemButton>
+        </ListItem>
+        <ListItem disablePadding>
+          <ListItemButton component={Link} to="/delete-patient-test">
+            <ListItemIcon>
+              <InboxIcon />
+            </ListItemIcon>
+            <ListItemText primary="Delete Patient Test" />
+          </ListItemButton>
+        </ListItem>
+        <ListItem disablePadding>
+          <ListItemButton component={Link} to="/All-patient-medicine">
+            <ListItemIcon>
+              <InboxIcon />
+            </ListItemIcon>
+            <ListItemText primary="All Patient Medicine" />
+          </ListItemButton>
+        </ListItem>
+        <ListItem disablePadding>
+          <ListItemButton component={Link} to="/single-patient-medicine">
+            <ListItemIcon>
+              <InboxIcon />
+            </ListItemIcon>
+            <ListItemText primary="Single Patient Medicine" />
+          </ListItemButton>
+        </ListItem>
+        <ListItem disablePadding>
+          <ListItemButton component={Link} to="/specific-patient-medicine">
+            <ListItemIcon>
+              <InboxIcon />
+            </ListItemIcon>
+            <ListItemText primary="Specific Patient Medicine" />
+          </ListItemButton>
+        </ListItem>
+        <ListItem disablePadding>
+          <ListItemButton component={Link} to="/specific-patient-record">
+            <ListItemIcon>
+              <InboxIcon />
+            </ListItemIcon>
+            <ListItemText primary="Specific Patient Record" />
+          </ListItemButton>
+        </ListItem>
+        <ListItem disablePadding>
+          <ListItemButton component={Link} to="/specific-patient-test">
+            <ListItemIcon>
+              <InboxIcon />
+            </ListItemIcon>
+            <ListItemText primary="Specific Patient Test" />
+          </ListItemButton>
+        </ListItem>
+        <ListItem disablePadding>
+          <ListItemButton component={Link} to="/medical-records">
+            <ListItemIcon>
+              <InboxIcon />
+            </ListItemIcon>
+            <ListItemText primary="Medical Records" />
+          </ListItemButton>
+        </ListItem>
+        <ListItem disablePadding>
+          <ListItemButton component={Link} to="/patient-medical-records">
+            <ListItemIcon>
+              <InboxIcon />
+            </ListItemIcon>
+            <ListItemText primary="Patient Medical Records" />
+          </ListItemButton>
+        </ListItem>
+        <ListItem disablePadding>
+          <ListItemButton component={Link} to="/medical-tests">
+            <ListItemIcon>
+              <InboxIcon />
+            </ListItemIcon>
+            <ListItemText primary="Medical Tests" />
+          </ListItemButton>
+        </ListItem>
+        <ListItem disablePadding>
+          <ListItemButton component={Link} to="/patient-medical-tests">
+            <ListItemIcon>
+              <InboxIcon />
+            </ListItemIcon>
+            <ListItemText primary="Patient Medical Tests" />
+          </ListItemButton>
+        </ListItem>
+        <ListItem disablePadding>
+          <ListItemButton component={Link} to="/add-patient-medicine">
+            <ListItemIcon>
+              <InboxIcon />
+            </ListItemIcon>
+            <ListItemText primary="Add Patient Medicine" />
+          </ListItemButton>
+        </ListItem>
+        <ListItem disablePadding>
+          <ListItemButton component={Link} to="/add-patient-test">
+            <ListItemIcon>
+              <InboxIcon />
+            </ListItemIcon>
+            <ListItemText primary="Add Patient Test" />
+          </ListItemButton>
+        </ListItem>
+        <ListItem disablePadding>
+          <ListItemButton component={Link} to="/add-patient-record">
+            <ListItemIcon>
+              <InboxIcon />
+            </ListItemIcon>
+            <ListItemText primary="Add Patient Record" />
+          </ListItemButton>
+        </ListItem>
+      </List>
+    </Box>
+  );
+
+  return (
+    <Box sx={{ flexGrow: 1 }}>
+      <AppBar position="static">
+        <Container maxWidth="xl">
+          <Toolbar disableGutters>
+          <IconButton
+              size="large"
+              edge="start"
+              color="inherit"
+              aria-label="open drawer"
+              onClick={toggleDrawer(true)}
+              sx={{ mr: 2 }}
+            >
+            <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+            
+            <Typography
+              variant="h6"
+              noWrap
+              component="a"
+              href="/"
+              sx={{
+                mr: 2,
+                display: { xs: 'none', md: 'flex' },
+                fontFamily: 'monospace',
+                fontWeight: 700,
+                letterSpacing: '.3rem',
+                color: 'inherit',
+                textDecoration: 'none',
+              }}
+            >
+              CARE MEDI
+            </Typography>
+
+            
+              <MenuIcon />
+            </IconButton>
+
+            <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+              <IconButton
+                size="large"
+                aria-label="account of current user"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                onClick={handleOpenNavMenu}
+                color="inherit"
+              >
+                <MenuIcon />
+              </IconButton>
+              <Menu
+                id="menu-appbar"
+                anchorEl={anchorElNav}
+                anchorOrigin={{
+                  vertical: 'bottom',
+                  horizontal: 'left',
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'left',
+                }}
+                open={Boolean(anchorElNav)}
+                onClose={handleCloseNavMenu}
+                sx={{
+                  display: { xs: 'block', md: 'none' },
+                }}
+              >
+                {pages.map((page) => (
+                  <MenuItem key={page.name} onClick={handleCloseNavMenu}>
+                    <Typography textAlign="center">{page.name}</Typography>
+                  </MenuItem>
+                ))}
+              </Menu>
+            </Box>
+            <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
+            <Typography
+              variant="h5"
+              noWrap
+              component="a"
+              href="/main-page"
+              sx={{
+                mr: 2,
+                display: { xs: 'flex', md: 'none' },
+                flexGrow: 1,
+                fontFamily: 'monospace',
+                fontWeight: 700,
+                letterSpacing: '.3rem',
+                color: 'inherit',
+                textDecoration: 'none',
+              }}
+            >
+              CARE MEDI
+            </Typography>
+            <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+              {pages.map((page) => (
+                <Button
+                  key={page.name}
+                  href={page.path}
+                  sx={{ my: 2, color: 'white', display: 'block' }}
+                >
+                  {page.name}
+                </Button>
+              ))}
+            </Box>
+
+            <Box sx={{ flexGrow: 0 }}>
+              <Tooltip title="Open call options">
+                <IconButton onClick={handleOpenCallMenu} sx={{ p: 0 }}>
+                  <CallIcon />
+                </IconButton>
+              </Tooltip>
+              <Menu
+                sx={{ mt: '45px' }}
+                id="menu-call"
+                anchorEl={anchorElCall}
+                anchorOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                open={Boolean(anchorElCall)}
+                onClose={handleCloseCallMenu}
+              >
+                <MenuItem onClick={handleCloseCallMenu}>
+                  <Typography textAlign="center">Contact Admin</Typography>
+                </MenuItem>
+                <MenuItem onClick={handleCloseCallMenu}>
+                  <Typography textAlign="center">Contact a Nurse</Typography>
+                </MenuItem>
+              </Menu>
+              <Tooltip title="Login">
+                <IconButton component={Link} to="/login" sx={{ p: 5 }}>
+                  <Face2Icon />
+                </IconButton>
+              </Tooltip>
+
+              <Menu
+                sx={{ mt: '45px' }}
+                id="menu-appbar"
+                anchorEl={anchorElUser}
+                anchorOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                open={Boolean(anchorElUser)}
+                onClose={handleCloseUserMenu}
+              >
+                {settings.map((setting) => (
+                  <MenuItem key={setting.name} onClick={handleCloseUserMenu}>
+                    <Typography textAlign="center">
+                      <a href={setting.path} style={{ textDecoration: 'none', color: 'inherit' }}>
+                        {setting.name}
+                      </a>
+                    </Typography>
+                  </MenuItem>
+                ))}
+              </Menu>
+            </Box>
+          </Toolbar>
+        </Container>
+      </AppBar>
+
+      <Drawer anchor="left" open={drawerOpen} onClose={toggleDrawer(false)}>
+        {loggedIn ? DrawerList : null}
+      </Drawer>
+    </Box>
+  );
+}
+
+export default Appbar;
+

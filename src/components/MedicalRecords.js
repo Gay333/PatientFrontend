@@ -80,28 +80,28 @@ const MedicalRecords = () => {
                     <br/>
                     <br/>
                     {filteredTests && filteredTests.length > 0 ? (
-                        <table style={{ borderCollapse: 'collapse', width: '100%' }}>
+                        <table style={{ borderCollapse: 'collapse', width: '100%' ,color:'black'}}>
                             <thead>
                                 <tr>
-                                    <th style={{ border: '1px solid #ddd', padding: '8px' }}>Patient ID</th>
-                                    <th style={{ border: '1px solid #ddd', padding: '8px' }}>Date of Appointment</th>
-                                    <th style={{ border: '1px solid #ddd', padding: '8px' }}>Doctor ID</th>
-                                    <th style={{ border: '1px solid #ddd', padding: '8px' }}>Nurse ID</th>
-                                    <th style={{ border: '1px solid #ddd', padding: '8px' }}>Hospital ID</th>
-                                    <th style={{ border: '1px solid #ddd', padding: '8px' }}>Purpose of Visit</th>
-                                    <th style={{ border: '1px solid #ddd', padding: '8px' }}>Past History</th>
+                                    <th style={{ color: 'black',border: '1px solid #ddd', padding: '8px' }}>Patient ID</th>
+                                    <th style={{color: 'black', border: '1px solid #ddd', padding: '8px' }}>Date of Appointment</th>
+                                    <th style={{color: 'black', border: '1px solid #ddd', padding: '8px' }}>Doctor ID</th>
+                                    <th style={{ color: 'black',border: '1px solid #ddd', padding: '8px' }}>Nurse ID</th>
+                                    <th style={{color: 'black', border: '1px solid #ddd', padding: '8px' }}>Hospital ID</th>
+                                    <th style={{color: 'black', border: '1px solid #ddd', padding: '8px' }}>Purpose of Visit</th>
+                                    <th style={{ color: 'black',border: '1px solid #ddd', padding: '8px' }}>Past History</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {filteredTests.map((test) => (
                                     <tr key={test.s_no}>
-                                        <td style={{ border: '1px solid #ddd', padding: '8px' }}>{test.patient_id || 'Not available'}</td>
-                                        <td style={{ border: '1px solid #ddd', padding: '8px' }}>{test.date_of_appointment || 'Not available'}</td>
-                                        <td style={{ border: '1px solid #ddd', padding: '8px' }}>{test.doctor_id || 'Not available'}</td>
-                                        <td style={{ border: '1px solid #ddd', padding: '8px' }}>{test.nurse_id || 'Not available'}</td>
-                                        <td style={{ border: '1px solid #ddd', padding: '8px' }}>{test.hospital_id || 'Not available'}</td>
-                                        <td style={{ border: '1px solid #ddd', padding: '8px' }}>{test.purpose_of_visit || 'Not available'}</td>
-                                        <td style={{ border: '1px solid #ddd', padding: '8px' }}>{test.past_history || 'Not available'}</td>
+                                        <td style={{ color: 'black',border: '1px solid #ddd', padding: '8px' }}>{test.patient_id || 'Not available'}</td>
+                                        <td style={{color: 'black', border: '1px solid #ddd', padding: '8px' }}>{test.date_of_appointment || 'Not available'}</td>
+                                        <td style={{color: 'black', border: '1px solid #ddd', padding: '8px' }}>{test.doctor_id || 'Not available'}</td>
+                                        <td style={{color: 'black', border: '1px solid #ddd', padding: '8px' }}>{test.nurse_id || 'Not available'}</td>
+                                        <td style={{color: 'black', border: '1px solid #ddd', padding: '8px' }}>{test.hospital_id || 'Not available'}</td>
+                                        <td style={{ color: 'black',border: '1px solid #ddd', padding: '8px' }}>{test.purpose_of_visit || 'Not available'}</td>
+                                        <td style={{color: 'black', border: '1px solid #ddd', padding: '8px' }}>{test.past_history || 'Not available'}</td>
                                     </tr>
                                 ))}
                             </tbody>
