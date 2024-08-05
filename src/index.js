@@ -22,6 +22,8 @@ import PatientRegistration from "./pages/PatientRegistration";
 import Profile from "./pages/Profile"; 
 */
 
+
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   //<React.StrictMode>

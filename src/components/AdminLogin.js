@@ -162,6 +162,7 @@ import { useNavigate } from 'react-router-dom';
 export default function AdminLogin() {
     const [admin_id, setAdminID] = React.useState('');
     console.log(admin_id);
+    console.log(window.globalVariable);
     
     const [password, setPass] = React.useState(''); 
     console.log(password);   
@@ -211,6 +212,8 @@ export default function AdminLogin() {
 
                 if (response.status === 200) {
                     console.log("ADMIN", admin_id);
+                    window.globalVariable = 2;
+                    console.log("IN ADMIN",window.globalVariable);
                     navigate('/admin-profile');
                 }
             } catch (error) {

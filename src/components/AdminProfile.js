@@ -46,6 +46,7 @@ export default function TemporaryDrawer() {
     axios.get('http://localhost:8080/admin/adminlogout')
       .then(response => {
         setMessage(response.data);
+        window.globalVariable = -1;
         window.location.href = "/";
       })
       .catch(error => {

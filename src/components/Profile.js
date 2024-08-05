@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import Button from '@mui/material/Button';
@@ -11,12 +11,46 @@ import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
+
 
 export default function TemporaryDrawer() {
   const [open, setOpen] = React.useState(false);
+  const [message, setMessage] = useState('');
+  const [hasFetched, setHasFetched] = useState(false);
 
   const toggleDrawer = (newOpen) => () => {
     setOpen(newOpen);
+  };
+  const enterance = useCallback(() => {
+    if (!hasFetched) {
+      setHasFetched(true);
+      console.log("Fetching welcome message");
+
+      axios.get('http://localhost:8080/patient/welcome')
+        .then(response => {
+          setMessage(response.data);
+        })
+        .catch(error => {
+          console.error('Error fetching welcome message:', error);
+        });
+    }
+  }, [hasFetched]);
+  useEffect(() => {
+    console.log("useEffect called");
+    enterance();
+  }, [enterance]);
+
+  const handleLogout = () => {
+    axios.get('http://localhost:8080/patient/patientlogout')
+      .then(response => {
+        setMessage(response.data);
+        window.globalVariable = -1;
+        window.location.href = "/";
+      })
+      .catch(error => {
+        console.error('Error logging out:', error);
+      });
   };
 
   const DrawerList = (
@@ -90,6 +124,8 @@ export default function TemporaryDrawer() {
       <Drawer open={open} onClose={toggleDrawer(false)}>
         {DrawerList}
       </Drawer>
+      <div>{message}</div>
+      <Button onClick={handleLogout} variant="contained" color="secondary">Logout</Button>
     </div>
   );
 }

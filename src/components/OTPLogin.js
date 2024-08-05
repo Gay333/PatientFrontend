@@ -154,6 +154,8 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate for navigation
 import { Container, Paper, Box, TextField, Button, Typography } from '@mui/material';
 import LoadingButton from '@mui/lab/LoadingButton';
+import { Link } from 'react-router-dom';
+
 
 const OTPForm = () => {
     const [phoneNumber, setPhoneNumber] = useState('');
@@ -193,6 +195,7 @@ const OTPForm = () => {
                 },
             });
             if (response.data === true) {
+                window.globalVariable = 1;
                 navigate('/patient-profile'); // Navigate to /patient-profile if OTP is verified
             } else {
                 setMessage('Invalid OTP');
@@ -258,6 +261,9 @@ const OTPForm = () => {
                         Verify OTP
                     </LoadingButton>
                     {message && <Typography color={isError ? 'error' : 'secondary'}>{message}</Typography>}
+                    <p style={{ textAlign: 'center', color: '#133C55', display: 'block' }}>
+                        <Link to="/register" style={{ color: 'inherit', textDecoration: 'none' }}>No account? Sign up</Link>
+                    </p>
                 </Box>
             </Paper>
         </Container>

@@ -1,16 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import axios from 'axios';
 import { LoadingButton } from '@mui/lab';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import { Container, Paper, MenuItem, Select, FormControl, InputLabel, Button, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
 
-const SinglePatientMedicine = () => {
+export default function PatientViewSingleMedicine(){
   const [tests, setTests] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [patient_ID, setPatientID] = useState('');
   const [error, setError] = useState('');
   const [patients, setPatients] = useState([]);
+  const [sessionID, setSessionID] = useState(null);
 
   axios.defaults.baseURL = "http://localhost:8080";
   const paperStyle = { padding: '50px 20px', width: 600, margin: '20px auto' };
@@ -30,6 +31,24 @@ const SinglePatientMedicine = () => {
   };
 
   useEffect(() => {
+    const fetchSessionID = async () => {
+      try {
+        const response = await axios.get('/patient/getID');
+        console.log('Session ID response:', response.data); // Debugging log
+        //if (response.data && response.data.sessionID) {
+          setSessionID(response.data);
+        //} else {
+          //console.error('Session ID not found in response:', response.data);
+        //}
+      } catch (error) {
+        console.error('Error fetching session ID:', error);
+      }
+    };
+
+    
+
+    fetchSessionID();
+
     axios.get('http://localhost:8080/patient/findAll')
       .then(response => {
         setPatients(response.data);
@@ -43,6 +62,12 @@ const SinglePatientMedicine = () => {
   const handleClick = () => {
     fetchTests();
   };
+
+  useEffect(()=>{
+    if (sessionID) {
+      setPatientID(sessionID);
+    }
+  })
 
   return (
     <Box sx={{ margin: '0 30px' }}>
@@ -59,33 +84,18 @@ const SinglePatientMedicine = () => {
             noValidate
             autoComplete="off"
           >
-            {patients.length > 0 ? (
-              <FormControl fullWidth variant="outlined">
-                <InputLabel id="patient-select-label">Select Patient</InputLabel>
-                <Select
-                  labelId="patient-select-label"
-                  id="patient-select"
-                  value={patient_ID}
-                  onChange={(e) => setPatientID(e.target.value)}
-                  label="Select Patient"
-                  fullWidth
-                >
-                  {patients.map((patient) => (
-                    <MenuItem key={patient.patient_Id} value={patient.patient_Id}>
-                      {patient.patient_Id}
-                    </MenuItem>
-                  ))}
-                </Select>
-              </FormControl>
-            ) : (
-              <p>No patients available</p>
-            )}
+             {sessionID ? (
+          <p>Click find to see medical charts</p>
+        ) : (
+          <p>No session ID available. Please log in.</p>
+        )}
             <div style={{ marginBottom: '20px' }}></div>
             <LoadingButton
               loading={isLoading}
               variant="contained"
               onClick={handleClick}
               color='secondary'
+              disabled={!sessionID}
             >
               Find
             </LoadingButton>
@@ -93,7 +103,7 @@ const SinglePatientMedicine = () => {
           </Box>
         </Paper>
       </Container>
-      <h2>Medical Tests</h2>
+      <h2>Medicine Charts</h2>
       {tests && tests.length > 0 ? (
         <TableContainer component={Paper}>
           <Table>
@@ -111,7 +121,7 @@ const SinglePatientMedicine = () => {
               {tests.map((test) => (
                 <TableRow key={test.serial_number}>
                   <TableCell>{test.patient_ID || 'Not available'}</TableCell>
-                  <TableCell>{test.medicine_ID || 'Not available'}</TableCell>
+                  <TableCell>{test.medicine_id || 'Not available'}</TableCell>
                   <TableCell>{test.purpose || 'Not available'}</TableCell>
                   <TableCell>{test.timing || 'Not available'}</TableCell>
                   <TableCell>{test.start_date || 'Not available'}</TableCell>
@@ -122,11 +132,10 @@ const SinglePatientMedicine = () => {
           </Table>
         </TableContainer>
       ) : (
-        <p>Medical Records loading...</p>
+        <p>No Medicine Charts or Medicine Charts loading...</p>
       )}
     </Box>
   );
 };
 
-export default SinglePatientMedicine;
-
+ 

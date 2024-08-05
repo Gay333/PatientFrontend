@@ -208,6 +208,7 @@ export default function NurseLogin() {
 
       if (response.status === 200) {
         // Login successful, redirect to nurse-profile page
+        window.globalVariable = 3;
         navigate('/nurse-profile');
       }
     } catch (error) {

@@ -140,12 +140,15 @@ import UploadComponent from './components/UploadComponent';
 import KnowMore from './components/KnowMore';
 import OTPLogin from './components/OTPLogin';
 import Profile from './components/Profile';
+import PatientViewSingleMedicine from './components/PatientViewSingleMedicine';
+import PatientViewMedicalRecord from './components/PatientViewMedicalRecord';
+import PatientViewTest from './components/PatientViewTest';
 
 function App() {
+  window.globalVariable = -1;
   return (
     <Router>
       <Appbar/>
-      
       <Routes>
       <Route path="/MainPage" element={<MainPage />} />
         <Route path="/login" element={<Login />} />
@@ -177,7 +180,10 @@ function App() {
         <Route path="/upload-pdf" element={<UploadComponent />} />
         <Route path="/Know-More" element={<KnowMore />} />
         <Route path="/OTP-Login" element={<OTPLogin />} />
-        <Route path="/" element={<MainPage />} /> {/* Default route */}
+        <Route path="/patient-view-medical-record" element={<PatientViewMedicalRecord />} />
+        <Route path="/patient-view-medicine-single" element={<PatientViewSingleMedicine />}/>
+        <Route path="/patient-view-test" element={<PatientViewTest />}/>
+        <Route path="/" element={<MainPage />} />
       </Routes>
     </Router>
   );
