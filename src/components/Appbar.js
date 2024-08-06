@@ -922,7 +922,7 @@ function Appbar() {
   const DrawerList = (
     <Box sx={{ width: 250 }} role="presentation" onClick={toggleDrawer(false)} onKeyDown={toggleDrawer(false)}>
       <List>
-        {(window.globalVariable === -1 || window.globalVariable === 2 || window.globalVariable === 3) && (
+        {(window.globalVariable === -1 || window.globalVariable === 1 ||window.globalVariable === 2 || window.globalVariable === 3) && (
           <>
             <ListItem disablePadding>
               <ListItemButton component={Link} to="/login">
@@ -968,6 +968,52 @@ function Appbar() {
                 <ListItemText primary="Add a new nurse" />
               </ListItemButton>
             </ListItem>
+            
+          </>
+        )}
+
+      {(window.globalVariable === 3) && (//Nurse
+          <>
+          <ListItem disablePadding>
+              <ListItemButton component={Link} to="/nurse-profile">
+                <ListItemIcon>
+                  <InboxIcon />
+                </ListItemIcon>
+                <ListItemText primary="Profile" />
+              </ListItemButton>
+            </ListItem>
+            
+            
+          </>
+        )}
+
+      {(window.globalVariable === 1) && (//Patient
+          <>
+          <ListItem disablePadding>
+              <ListItemButton component={Link} to="/patient-view-medical-record">
+                <ListItemIcon>
+                  <InboxIcon />
+                </ListItemIcon>
+                <ListItemText primary="Your Medical Records" />
+              </ListItemButton>
+            </ListItem>
+            <ListItem disablePadding>
+              <ListItemButton component={Link} to="/patient-view-medicine-single">
+                <ListItemIcon>
+                  <InboxIcon />
+                </ListItemIcon>
+                <ListItemText primary="Your Medicine Charts" />
+              </ListItemButton>
+            </ListItem>
+            <ListItem disablePadding>
+              <ListItemButton component={Link} to="/patient-view-test">
+                <ListItemIcon>
+                  <InboxIcon />
+                </ListItemIcon>
+                <ListItemText primary="Your Medical Tests" />
+              </ListItemButton>
+            </ListItem>
+            
             
           </>
         )}
