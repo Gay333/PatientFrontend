@@ -1,29 +1,40 @@
 import React, { useState } from 'react';
-import axios from 'axios';
-function Chat() {
+import useWebSocket from 'react-use-websocket';
+
+function ChatForm() {
+  const [userInput, setUserInput] = useState('');
   const [messages, setMessages] = useState([]);
-  const [input, setInput] = useState('');
-  const fetchReply = async (message) => {
-    try {
-      const { data } = await axios.post('http://localhost:8080/api/chat', message);
-      setMessages((prevMessages) => [...prevMessages, { text: data.choices[0].text, sender: 'bot' }]);
-    } catch (error) {
-      console.error("Error fetching reply:", error);
-    }
-  }
-  const handleSend = () => {
-    setMessages((prevMessages) => [...prevMessages, { text: input, sender: 'user' }]);
-    fetchReply(input);
-    setInput('');
+
+  const { sendMessage, lastMessage } = useWebSocket('ws://localhost:8080/chat', {
+    onMessage: (message) => {
+      setMessages((prevMessages) => [...prevMessages, message.data]);
+    },
+  });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    sendMessage(userInput);
+    setUserInput('');
   };
+
   return (
     <div>
-      {messages.map((message, index) => (
-        <p key={index}><strong>{message.sender}:</strong> {message.text}</p>
-      ))}
-      <input value={input} onChange={e => setInput(e.target.value)} />
-      <button onClick={handleSend}>Send</button>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          value={userInput}
+          onChange={(e) => setUserInput(e.target.value)}
+        />
+        <button type="submit">Send</button>
+      </form>
+      <div>
+        <h3>Messages:</h3>
+        {messages.map((msg, index) => (
+          <p key={index}>{msg}</p>
+        ))}
+      </div>
     </div>
   );
 }
-export default Chat;
+
+export default ChatForm;

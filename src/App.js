@@ -143,6 +143,7 @@ import Profile from './components/Profile';
 import PatientViewSingleMedicine from './components/PatientViewSingleMedicine';
 import PatientViewMedicalRecord from './components/PatientViewMedicalRecord';
 import PatientViewTest from './components/PatientViewTest';
+import Chat from './components/Chat';
 
 function App() {
   window.globalVariable = -1;
@@ -183,6 +184,7 @@ function App() {
         <Route path="/patient-view-medical-record" element={<PatientViewMedicalRecord />} />
         <Route path="/patient-view-medicine-single" element={<PatientViewSingleMedicine />}/>
         <Route path="/patient-view-test" element={<PatientViewTest />}/>
+        <Route path="/chat" element={<Chat />}/>
         <Route path="/" element={<MainPage />} />
       </Routes>
     </Router>
