@@ -1,5 +1,7 @@
 import React, { useEffect, useState, useCallback } from 'react';
-import Box from '@mui/material/Box';
+import { Box, Container, Paper, MenuItem, Select, FormControl, InputLabel, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
+
+//import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import Button from '@mui/material/Button';
 import List from '@mui/material/List';
@@ -21,6 +23,8 @@ export default function TemporaryDrawer() {
   const [open, setOpen] = React.useState(false);
   const [message, setMessage] = useState('');
   const [hasFetched, setHasFetched] = useState(false);
+  const [patient, setPatient] = useState([]);
+  const [hasFetched1, setHasFetched1] = useState(false);
 
   const toggleDrawer = (newOpen) => () => {
     setOpen(newOpen);
@@ -37,11 +41,27 @@ export default function TemporaryDrawer() {
         .catch(error => {
           console.error('Error fetching welcome message:', error);
         });
+        axios.get('http://localhost:8080/nurse/profile')
+        .then(response => {
+          setPatient(response.data);
+          console.log(response.data);
+        })
+        .catch(error => {
+          console.error('Error fetching profile:', error);
+        });
     }
   }, [hasFetched]);
+
+  
+  
+  
+  
+  
   useEffect(() => {
     console.log("useEffect called");
     enterance();
+    //en();
+    console.log("HETRE",patient);
   }, [enterance]);
 
   const handleLogout = () => {
@@ -195,6 +215,24 @@ export default function TemporaryDrawer() {
       </Drawer>
       <div>{message}</div>
       <Button onClick={handleLogout} variant="contained" color="secondary">Logout</Button>
+      {patient ? (
+  <TableContainer>
+    <Table>
+      <TableBody>
+        <TableRow key={patient.nurse_id}>
+          <TableCell>{patient.nurse_id || 'Not available'}</TableCell>
+          <TableCell>{patient.nurse_firstname || 'Not available'}</TableCell>
+          <TableCell>{patient.nurse_lastname || 'Not available'}</TableCell>
+          <TableCell>{patient.nurse_phone || 'Not available'}</TableCell>
+          <TableCell>{patient.nurse_address || 'Not available'}</TableCell>
+          <TableCell>{patient.hospital_id || 'Not available'}</TableCell>
+        </TableRow>
+      </TableBody>
+    </Table>
+  </TableContainer>
+) : (
+  <p>Loading...</p>
+)}
 
     </div>
   );
