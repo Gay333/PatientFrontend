@@ -1,4 +1,4 @@
-html, body {
+/*html, body {
     margin: 0;
     padding: 0;
     width: 100%;
@@ -11,12 +11,12 @@ html, body {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    width: 100%; /* Ensure full width */
+    width: 100%; /* Ensure full width 
   }
 
   .main::before {
     content: '';
-    /*background-image: url('https://tse3.mm.bing.net/th/id/OIP.NZg1N_qd_eXezcZ8MaVH7gHaJ4?rs=1&pid=ImgDetMain');
+    background-image: url('https://tse3.mm.bing.net/th/id/OIP.NZg1N_qd_eXezcZ8MaVH7gHaJ4?rs=1&pid=ImgDetMain');
     background-size: cover;
     background-position: center;
     background-repeat: repeat; 
@@ -26,14 +26,14 @@ html, body {
     left: 0;
     height: 100%;
     width: 100%;
-    z-index: -1; */
+    z-index: -1; 
   }
   
   
   .carousel .slide img {
     width: 100%;
     height: 500px;
-    object-fit: cover; /* Crop the image */
+    object-fit: cover; 
   }
   
   .carousel .slide {
@@ -46,7 +46,7 @@ html, body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(19, 60, 85, 0.5); /* Translucent #133C55 color */
+    background-color: rgba(19, 60, 85, 0.5); 
     display: flex;
     justify-content: center;
     align-items: center;
@@ -56,8 +56,8 @@ html, body {
   }
   
   .carousel-container {
-    width: 100%; /* Ensure full width */
-    margin-bottom: 20px; /* Space between carousel and next section */
+    width: 100%; 
+    margin-bottom: 20px; 
   }
   
   .banner {
@@ -79,7 +79,7 @@ html, body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(19, 60, 85, 0.5); /* Translucent #133C55 color */
+    background-color: rgba(19, 60, 85, 0.5); 
     display: flex;
     justify-content: center;
     align-items: center;
@@ -102,24 +102,24 @@ html, body {
   table {
     width: 100%;
     border-collapse: collapse;
-    margin: 0 20px; /* Add margin to create space on the sides */
+    margin: 0 20px; 
   }
   
   th, td {
-    padding: 10px; /* Add padding to create space */
+    padding: 10px; 
     text-align: left;
-    color: white; /* Ensure text is visible on the background */
+    color: white; 
   }
   
   
   .hr {
     border: none;
     height: 2px;
-    background-color: #133C55; /* Custom color */
-    margin: 20px 0; /* Space around the line */
+    background-color: #133C55; 
+    margin: 20px 0; 
   }
   p, ul, h1, h2, h3, h4, h5, h6 {
-    margin: 0 50px; /* Add margin to the sides */
+    margin: 0 50px; 
   }
   .table{
     color: white;
@@ -143,3 +143,235 @@ html, body {
 #other{
     margin:200px;
 }
+*/
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%; 
+}
+
+.main::before {
+  content: '';
+  background-image: url('https://tse3.mm.bing.net/th/id/OIP.NZg1N_qd_eXezcZ8MaVH7gHaJ4?rs=1&pid=ImgDetMain');
+  background-size: cover;
+  background-position: center;
+  background-repeat: repeat; 
+  opacity: 1; 
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: -1; 
+}
+
+
+.carousel .slide img {
+  width: 100%;
+  height: 500px;
+  object-fit: cover; 
+}
+
+.carousel .slide {
+  position: relative;
+}
+
+.carousel .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(19, 60, 85, 0.5); 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.carousel-container {
+  width: 100%; 
+  margin-bottom: 20px; 
+}
+
+
+.carousel-indicators, .carousel-thumbnails {
+display: none;
+}
+
+
+
+.banner {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  margin-bottom: 50px;
+}
+
+.banner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.banner .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(19, 60, 85, 0.5); 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+
+.bottom {
+  background-color: #386FA4;
+  width: 100%;
+  height: 225px;
+  object-fit: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0 20px; 
+}
+
+th, td {
+  padding: 10px; 
+  text-align: left;
+  color: white; 
+}
+
+
+.hr {
+  border: none;
+  height: 2px;
+  background-color: #133C55; 
+  margin: 20px 0; 
+}
+p, ul, h1, h2, h3, h4, h5, h6 {
+  margin: 0 50px; 
+}
+.table{
+  color: white;
+}
+
+#box{
+  position: center;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  text-align: center;
+  text-size-adjust: large;
+  font-weight: 600;
+  
+}
+
+#newBox{
+  font-weight: 1000;
+  font-size: xx-large;
+}
+
+#other{
+  margin:200px;
+}
+
+/* CSS */
+.home-page-container {
+animation: fadeIn 1s ease-in-out;
+max-width: 1200px; /* Set a max-width for the container */
+margin: auto; /* Center the container */
+}
+
+@keyframes fadeIn {
+from { opacity: 0; }
+to { opacity: 1; }
+}
+
+.title {
+font-size: 2.5rem;
+font-weight: bold;
+color: rgb(26, 116, 226);
+text-align: center;
+margin-bottom: 1rem;
+}
+
+.subtitle {
+font-size: 1.8rem;
+text-align: center;
+margin-bottom: 2rem;
+}
+
+.intro-text {
+background-color: rgba(255, 255, 255, 0.2); 
+text-align: justify; /* Justify the intro text */
+padding: 20px; /* Add padding for better readability */
+}
+
+.feature-section {
+display: flex;
+flex-direction: column;
+gap: 2rem;
+}
+
+.feature {
+display: flex;
+justify-content: space-between; /* Aligns children to the edges */
+align-items: center;
+padding: 20px;
+background-color: rgba(255, 255, 255, 0.2);
+border-radius: 10px;
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+margin: 10px;
+
+
+}
+
+.feature:nth-child(odd) {
+flex-direction: row-reverse; /* Reverses the order for odd features */
+}
+
+.feature:nth-child(even) {
+flex-direction: row; /* Keeps the default order for even features */
+}
+
+.feature > * {
+flex-basis: 50%; /* Each child takes up half the space */
+}
+
+
+.feature h3{
+max-width: 50%; /* Allow text to fill the allocated space */
+background-color: rgba(255, 255, 255, 0.0);
+color:rgb(26, 116, 226);
+
+}
+
+.feature p {
+max-width: 50%; /* Allow text to fill the allocated space */
+background-color: rgba(255, 255, 255, 0.0);
+
+}
+
